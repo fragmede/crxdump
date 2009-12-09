@@ -21,6 +21,9 @@ def main():
     os.mkdir(os.path.basename(sys.argv[1]))
     os.chdir(os.path.basename(sys.argv[1]))
     for filename in zf.namelist():
+        if filename.endswith('/'):
+            os.mkdir(filename)
+            continue
         outfile = open(filename, 'wb')
         outfile.write(zf.read(filename))
         outfile.close()
